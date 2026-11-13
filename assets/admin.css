@@ -1,0 +1,70 @@
+/* Feuerwehr Beladung – Backend */
+#fwb-editor-box .inside{margin:0;padding:0}
+#fwb-editor{--fwb-rot:#b3221a;--fwb-blau:#2271b1}
+.fwb-reiter{padding:12px 12px 0;display:flex;flex-wrap:wrap;gap:4px}
+.fwb-reiter .nav-tab{margin:0;cursor:pointer;font-size:14px}
+.fwb-inhalt{padding:16px}
+.fwb-speicherhinweis{margin:0;padding:10px 16px;border-top:1px solid #dcdcde;color:#646970;background:#f6f7f7}
+.fwb-zwei{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 24px}
+.fwb-zeile{margin-bottom:14px;min-width:0}
+.fwb-zeile .regular-text,.fwb-zeile .large-text{width:100%;max-width:100%}
+.fwb-label{display:block;font-weight:600;margin-bottom:4px}
+.fwb-warn{color:#b32d2e}
+.fwb-anleitung{background:#f0f6fc;border-left:4px solid var(--fwb-blau);padding:8px 12px;margin:16px 0 8px}
+.fwb-leiste{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+
+.fwb-bildwahl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fwb-bildwahl img{height:64px;width:auto;border-radius:3px;border:1px solid #c3c4c7;display:block}
+
+.fwb-tabelle{width:100%;border-collapse:collapse;margin:8px 0}
+.fwb-tabelle th{text-align:left;font-weight:600;padding:6px 8px;border-bottom:1px solid #c3c4c7}
+.fwb-tabelle td{padding:6px 8px;border-bottom:1px solid #f0f0f1;vertical-align:top}
+.fwb-tabelle input[type=text]{width:100%}
+.fwb-tabelle select{max-width:100%}
+.fwb-zeile-akt td{background:#f0f6fc}
+.fwb-aktionen{white-space:nowrap;display:flex;gap:6px;align-items:center}
+td.fwb-aktionen{display:table-cell}
+td.fwb-aktionen>*{margin-right:6px}
+.fwb-schalter-felder{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fwb-schalter-felder input{flex:1 1 220px}
+
+/* Fächer: Liste links, Editor rechts */
+.fwb-spalten{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px}
+@media (max-width:900px){.fwb-spalten{grid-template-columns:minmax(0,1fr)}}
+.fwb-seitenliste{display:flex;flex-direction:column;gap:4px;align-content:start}
+.fwb-seitenliste-eintrag{display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid #c3c4c7;background:#fff;border-radius:4px;padding:6px 10px;cursor:pointer}
+.fwb-seitenliste-eintrag span{color:#646970;font-size:12px}
+.fwb-seitenliste-eintrag.fwb-akt{border-color:var(--fwb-blau);box-shadow:inset 3px 0 0 var(--fwb-blau);background:#f0f6fc}
+.fwb-seitenliste .button{margin-top:8px}
+.fwb-unterreiter{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.fwb-unterreiter-knopf{border:1px solid #c3c4c7;background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.fwb-unterreiter-knopf.fwb-akt{background:#1d2327;border-color:#1d2327;color:#fff}
+
+/* Zeichenfläche */
+.fwb-fl{position:relative;width:100%;max-width:900px;background:#2c3338;border:1px solid #8c8f94;border-radius:4px;overflow:hidden;cursor:crosshair;touch-action:none;user-select:none}
+.fwb-fl img{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.fwb-fl-hinweis{position:absolute;left:0;right:0;bottom:0;text-align:center;padding:6px 12px;font-size:12px;color:#c3c4c7;background:rgba(0,0,0,.35);pointer-events:none}
+.fwb-r{position:absolute;box-sizing:border-box;border:2px solid #fff;outline:1px solid rgba(0,0,0,.6);background:rgba(34,113,177,.28);cursor:move;display:flex;align-items:flex-start}
+.fwb-r-text{background:rgba(0,0,0,.72);color:#fff;font-size:11px;line-height:1.3;padding:1px 5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none}
+.fwb-r-griff{position:absolute;right:-2px;bottom:-2px;width:14px;height:14px;background:#fff;border:1px solid #1d2327;cursor:nwse-resize}
+.fwb-r-akt{border-color:#ffb900;background:rgba(255,185,0,.3);z-index:2}
+.fwb-r-schalter{background:rgba(0,163,42,.32);border-style:dashed}
+.fwb-r-offen{background:rgba(214,54,56,.35);border-color:#ffabaf}
+.fwb-r-neu{border-style:dashed;background:rgba(255,255,255,.2);pointer-events:none}
+
+/* Geräteliste */
+.fwb-geraete{display:flex;flex-direction:column;gap:4px}
+.fwb-geraet{border:1px solid #c3c4c7;border-radius:4px;background:#fff}
+.fwb-geraet-kopf{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;width:100%;text-align:left;background:none;border:0;padding:8px 12px;cursor:pointer}
+.fwb-geraet-meta{color:#646970;font-size:12px}
+.fwb-geraet-meta.fwb-warn{color:#b32d2e}
+.fwb-geraet.fwb-offen{border-color:var(--fwb-blau)}
+.fwb-geraet-form{padding:4px 12px 8px;border-top:1px solid #f0f0f1}
+
+.fwb-protokoll{margin:0}
+.fwb-protokoll li{margin-bottom:8px;color:#50575e}
+
+/* Einstellungsseite */
+.fwb-einstellungen .card{max-width:720px}
+.fwb-einstellungen .fwb-form{margin:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fwb-notizen{background:#f6f7f7;border-left:4px solid #c3c4c7;padding:4px 12px;margin:8px 0}

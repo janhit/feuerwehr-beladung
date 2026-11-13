@@ -1,0 +1,156 @@
+/* Feuerwehr Beladung – Lernseite. Alle Regeln sind auf .fwb begrenzt, damit das Theme der Seite unberührt bleibt. */
+.fwb{
+  --fwb-rot:#b3221a;--fwb-rot-hell:#f6e1df;--fwb-blau:#1f5fd0;
+  --fwb-tinte:#1a1e23;--fwb-grau:#5a636d;--fwb-linie:#cbd1d8;--fwb-flaeche:#fff;--fwb-grund:#f1f3f5;
+  --fwb-ok:#1d7a45;--fwb-ok-hell:#ddf1e5;--fwb-falsch:#b8400f;--fwb-falsch-hell:#fce6da;
+  container-type:inline-size;
+  color:var(--fwb-tinte);font-size:16px;line-height:1.5;text-align:left;max-width:1100px;margin-inline:auto;
+}
+.fwb *,.fwb *::before,.fwb *::after{box-sizing:border-box}
+.fwb button{font:inherit;color:inherit;cursor:pointer;text-transform:none;letter-spacing:normal;box-shadow:none;margin:0}
+.fwb button:disabled{cursor:default}
+.fwb :focus-visible{outline:3px solid var(--fwb-blau);outline-offset:2px}
+.fwb h2,.fwb h3,.fwb h4,.fwb p,.fwb ul,.fwb dl,.fwb dd{margin:0;padding:0}
+.fwb img{max-width:100%;height:auto}
+
+.fwb-laden,.fwb-leer{color:var(--fwb-grau);padding:24px 0}
+.fwb-fehler{background:var(--fwb-falsch-hell);color:var(--fwb-falsch);padding:10px 14px;border-radius:8px;margin-bottom:12px}
+.fwb-hinweis{color:var(--fwb-grau);font-size:.9em;margin-top:8px}
+.fwb-ueber{font-size:.75em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fwb-grau)}
+.fwb-marke{font-size:.75em;font-weight:600;background:#fff3cd;color:#6b4e00;padding:2px 8px;border-radius:999px}
+.fwb .fwb-link{background:none;border:0;padding:0;color:var(--fwb-blau);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+.fwb .fwb-knopf{border:1px solid var(--fwb-linie);background:var(--fwb-flaeche);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.92em;line-height:1.3}
+.fwb .fwb-knopf:hover{border-color:var(--fwb-tinte)}
+.fwb .fwb-knopf.fwb-primaer{background:var(--fwb-rot);border-color:var(--fwb-rot);color:#fff}
+.fwb-knopfreihe{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.fwb-karte{background:var(--fwb-flaeche);border:1px solid var(--fwb-linie);border-radius:12px;padding:18px}
+.fwb-karte>h3{font-size:1.15em;margin-bottom:6px}
+
+/* Kopf */
+.fwb-kopf{border-bottom:3px solid var(--fwb-rot);padding-bottom:12px;margin-bottom:16px}
+.fwb-titelzeile{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin:4px 0 10px}
+.fwb .fwb-titel{font-size:clamp(1.6em,5vw,2.2em);line-height:1.1;font-weight:800}
+.fwb-steckbrief{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;margin-bottom:14px}
+.fwb .fwb-steckbrief-foto{width:200px;max-width:100%;border-radius:10px;flex:0 0 auto;display:block}
+.fwb-steckbrief-text{flex:1 1 280px;min-width:0}
+.fwb-kurz{color:var(--fwb-grau);margin-bottom:10px;max-width:65ch}
+.fwb-fakten{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:8px}
+.fwb-fakten>div{background:var(--fwb-grund);border-radius:8px;padding:8px 10px;min-width:0}
+.fwb-fakten dt{font-size:.72em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fwb-grau)}
+.fwb-fakten dd{font-weight:700;overflow-wrap:anywhere}
+.fwb-leiste{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.fwb-tabs{display:flex;flex-wrap:wrap;gap:4px;background:var(--fwb-grund);border-radius:10px;padding:4px}
+.fwb .fwb-tab{border:0;background:none;border-radius:7px;padding:7px 14px;font-weight:700;color:var(--fwb-grau)}
+.fwb .fwb-tab.fwb-akt{background:var(--fwb-rot);color:#fff}
+.fwb .fwb-suche{font:inherit;border:1px solid var(--fwb-linie);border-radius:8px;padding:7px 12px;min-width:0;flex:1 1 180px;max-width:280px;background:var(--fwb-flaeche);color:var(--fwb-tinte)}
+
+/* Auswahl-Chips */
+.fwb-wahl{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.fwb .fwb-chip{border:1px solid var(--fwb-linie);background:var(--fwb-flaeche);border-radius:999px;padding:5px 12px;font-size:.88em;line-height:1.3}
+.fwb .fwb-chip:hover{border-color:var(--fwb-tinte)}
+.fwb .fwb-chip.fwb-akt{background:var(--fwb-tinte);border-color:var(--fwb-tinte);color:#fff}
+
+/* Foto mit Markierungen */
+.fwb-bild{position:relative;width:100%;border-radius:10px;overflow:hidden;background:#2b3138}
+.fwb .fwb-bild>img{position:absolute;inset:0;width:100%;height:100%;display:block;max-width:none}
+.fwb-bild-leer{background:repeating-linear-gradient(135deg,#2b3138 0 14px,#313840 14px 28px)}
+.fwb-bild-hinweis{position:absolute;right:8px;bottom:8px;font-size:.75em;color:#d5dae0;background:rgba(0,0,0,.5);padding:2px 8px;border-radius:4px}
+.fwb .fwb-hs{position:absolute;padding:0;border:2px solid rgba(255,255,255,.95);border-radius:6px;background:rgba(31,95,208,.14);box-shadow:0 0 0 1px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.fwb .fwb-hs:hover{background:rgba(31,95,208,.34)}
+.fwb .fwb-hs.fwb-akt{border-color:#ffd24a;background:rgba(255,210,74,.3);box-shadow:0 0 0 1px rgba(0,0,0,.55),0 0 0 4px rgba(255,210,74,.45);z-index:1}
+.fwb-hs-name{background:rgba(0,0,0,.72);color:#fff;font-weight:700;padding:2px 8px;border-radius:4px;max-width:96%;overflow:hidden;text-overflow:ellipsis;font-size:clamp(.7em,2.4vw,1em);line-height:1.25}
+.fwb-hs-geraet .fwb-hs-name{font-weight:600;font-size:clamp(.6em,1.9vw,.8em);overflow-wrap:anywhere;hyphens:auto;text-align:center}
+.fwb-hs-nr{position:absolute;left:-2px;top:-2px;min-width:1.7em;height:1.7em;padding:0 4px;border-radius:6px 0 6px 0;background:#fff;color:var(--fwb-rot);font-weight:800;font-size:clamp(.7em,2vw,.85em);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px rgba(0,0,0,.55)}
+.fwb-ohne-marken .fwb-hs{border-color:transparent;background:transparent;box-shadow:none}
+.fwb-ohne-marken .fwb-hs>*{display:none}
+.fwb-ohne-marken .fwb-hs.fwb-akt{border-color:#ffd24a;box-shadow:0 0 0 4px rgba(255,210,74,.45)}
+.fwb .fwb-schalter{position:absolute;z-index:2;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;border:3px solid #fff;background:var(--fwb-blau);color:#fff;border-radius:999px;padding:4px 12px 4px 5px;box-shadow:0 4px 14px rgba(0,0,0,.45);font-weight:700;font-size:clamp(.68em,1.9vw,.82em);white-space:nowrap;line-height:1.2}
+.fwb .fwb-schalter:hover{filter:brightness(1.12)}
+.fwb-symbol{display:flex}
+.fwb-symbol svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.fwb .fwb-schalter:not(:has(.fwb-schalter-text)){padding:5px}
+@container (max-width:560px){.fwb-schalter-text{display:none}.fwb .fwb-schalter{padding:5px}}
+.fwb .fwb-schalter-unten{display:inline-flex;align-items:center;gap:8px}
+.fwb-schalter-unten .fwb-symbol svg{width:20px;height:20px;stroke:var(--fwb-blau)}
+.fwb-fach-bild .fwb-knopfreihe{margin-top:10px}
+.fwb-rollladen{position:absolute;inset:0;z-index:3;background:repeating-linear-gradient(to bottom,#dce0e5 0 22px,#a9b1ba 22px 24px);animation:fwb-hoch 1s cubic-bezier(.6,.05,.3,1) .15s forwards;pointer-events:none}
+@keyframes fwb-hoch{to{transform:translateY(-101%)}}
+.fwb-blende .fwb-bild{animation:fwb-blende .4s ease-out}
+@keyframes fwb-blende{from{opacity:.3}to{opacity:1}}
+
+/* Fahrzeug von außen */
+.fwb .fwb-zwischentitel{font-size:1.05em;margin:22px 0 8px}
+.fwb-fachliste{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.fwb .fwb-fachkarte{display:flex;gap:12px;align-items:center;text-align:left;border:1px solid var(--fwb-linie);background:var(--fwb-flaeche);border-radius:10px;padding:10px 12px}
+.fwb .fwb-fachkarte:hover{border-color:var(--fwb-tinte)}
+.fwb-fachkarte-name{font-weight:800;font-size:1.35em;color:var(--fwb-rot);min-width:2.2em}
+.fwb-fachkarte-text{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.fwb-fachkarte-text small{color:var(--fwb-grau)}
+
+/* Geöffnetes Fach */
+.fwb-fach-kopf{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.fwb .fwb-fach-titel{font-size:1.3em;flex:1 1 220px;display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.fwb-fach-name{color:var(--fwb-rot);font-weight:800;font-size:1.3em}
+.fwb-fach-raster{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+@container (max-width:780px){.fwb-fach-raster{grid-template-columns:minmax(0,1fr)}}
+.fwb-info{min-width:0;display:flex;flex-direction:column;gap:14px}
+.fwb-geraet{border-left:4px solid var(--fwb-rot);padding-left:14px}
+.fwb .fwb-geraet h4{font-size:1.4em;line-height:1.2;margin:2px 0 8px;overflow-wrap:anywhere}
+.fwb .fwb-geraet-foto{display:block;max-height:180px;width:auto;border-radius:8px;margin-bottom:8px}
+.fwb-geraet dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px}
+.fwb-geraet dt{font-weight:700;color:var(--fwb-grau);font-size:.9em}
+.fwb-geraet dd{white-space:pre-line}
+.fwb-gruppe .fwb-wahl{margin:4px 0 0}
+.fwb .fwb-chip[data-geraet].fwb-akt{background:#fff6d6;border-color:#c79a00;color:var(--fwb-tinte)}
+
+/* Suche */
+.fwb-treffer{list-style:none;display:flex;flex-direction:column;gap:6px}
+.fwb .fwb-treffer button{display:flex;flex-wrap:wrap;gap:2px 14px;justify-content:space-between;width:100%;text-align:left;border:1px solid var(--fwb-linie);background:var(--fwb-flaeche);border-radius:8px;padding:9px 12px}
+.fwb .fwb-treffer button:hover:not(:disabled){border-color:var(--fwb-tinte)}
+.fwb-treffer span{color:var(--fwb-grau)}
+
+/* Quiz */
+.fwb-quiz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@container (max-width:620px){.fwb-quiz{grid-template-columns:minmax(0,1fr)}}
+.fwb-fortschritt{display:flex;justify-content:space-between;gap:10px;font-size:.85em;color:var(--fwb-grau);font-variant-numeric:tabular-nums}
+.fwb-balken{height:6px;background:var(--fwb-linie);border-radius:3px;overflow:hidden;margin:6px 0 18px}
+.fwb-balken i{display:block;height:100%;background:var(--fwb-rot);transition:width .3s}
+.fwb-balken-gross{height:12px;border-radius:6px;margin:10px 0 4px}
+.fwb .fwb-frage{font-size:clamp(1.5em,5vw,2em);line-height:1.15;margin-top:2px;overflow-wrap:anywhere;hyphens:auto}
+.fwb .fwb-ergebnis{font-size:1.6em;line-height:1.2;margin:2px 0 8px}
+.fwb-rueckmeldung{margin-top:16px;padding:12px 14px;border-radius:10px}
+.fwb-rueckmeldung.fwb-ok{background:var(--fwb-ok-hell)}
+.fwb-rueckmeldung.fwb-ok strong{color:var(--fwb-ok)}
+.fwb-rueckmeldung.fwb-falsch{background:var(--fwb-falsch-hell)}
+.fwb-rueckmeldung.fwb-falsch strong{color:var(--fwb-falsch)}
+.fwb-antworten{display:flex;flex-direction:column;gap:14px}
+.fwb-antwortknoepfe{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:6px}
+.fwb .fwb-antwort{min-height:56px;border:2px solid var(--fwb-linie);border-radius:8px;background:var(--fwb-grund);font-weight:800;font-size:1.25em}
+.fwb .fwb-antwort:hover:not(:disabled){border-color:var(--fwb-tinte)}
+.fwb .fwb-antwort.fwb-ok{border-color:var(--fwb-ok);background:var(--fwb-ok-hell);color:var(--fwb-ok)}
+.fwb .fwb-antwort.fwb-falsch{border-color:var(--fwb-falsch);background:var(--fwb-falsch-hell);color:var(--fwb-falsch)}
+.fwb .fwb-fehlerliste{padding-left:20px;margin:6px 0 10px;list-style:disc}
+
+/* Mein Lernstand */
+.fwb-lernstand{display:flex;flex-direction:column;gap:14px;max-width:760px}
+.fwb-schalterzeile{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.fwb-schalterzeile input{width:20px;height:20px;margin:3px 0 0;flex:none}
+.fwb-schalterzeile span{display:flex;flex-direction:column}
+.fwb-schalterzeile small{color:var(--fwb-grau)}
+.fwb .fwb-verlauf{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92em;margin:0;border:0}
+.fwb .fwb-verlauf th,.fwb .fwb-verlauf td{text-align:left;padding:6px 8px 6px 0;border:0;border-bottom:1px solid var(--fwb-linie)}
+
+/* Fahrzeugliste */
+.fwb-fahrzeuge{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.fwb .fwb-fahrzeugkarte{display:flex;flex-direction:column;text-align:left;border:1px solid var(--fwb-linie);background:var(--fwb-flaeche);border-radius:12px;overflow:hidden;padding:0}
+.fwb .fwb-fahrzeugkarte:hover{border-color:var(--fwb-tinte)}
+.fwb .fwb-fahrzeugkarte img,.fwb-fahrzeugkarte-leer{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--fwb-rot-hell)}
+.fwb-fahrzeugkarte-text{display:flex;flex-direction:column;gap:2px;padding:12px 14px}
+.fwb-fahrzeugkarte-text strong{font-size:1.3em}
+.fwb-fahrzeugkarte-text small{color:var(--fwb-grau)}
+
+@media (prefers-reduced-motion:reduce){
+  .fwb-rollladen{display:none}
+  .fwb-blende .fwb-bild{animation:none}
+  .fwb-balken i,.fwb .fwb-hs{transition:none}
+}

@@ -1,0 +1,33 @@
+# Baut bei jedem Versions-Tag (z. B. v0.2.0) das installierbare ZIP und veröffentlicht es als Release.
+# Das Plugin findet neue Releases selbst und bietet sie im WordPress-Backend zur Installation an.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version im Plugin-Kopf prüfen
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          grep -Eq "^ \* Version: +${TAG}$" feuerwehr-beladung.php || { echo "Tag ${GITHUB_REF_NAME} passt nicht zur Version in feuerwehr-beladung.php"; exit 1; }
+          grep -q "define( 'FWB_VERSION', '${TAG}' );" feuerwehr-beladung.php || { echo "FWB_VERSION passt nicht zum Tag"; exit 1; }
+
+      - name: ZIP bauen
+        run: |
+          mkdir -p build/feuerwehr-beladung
+          rsync -a --exclude build --exclude '.git*' --exclude tests ./ build/feuerwehr-beladung/
+          cd build && zip -r ../feuerwehr-beladung.zip feuerwehr-beladung
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: feuerwehr-beladung.zip
+          generate_release_notes: true
