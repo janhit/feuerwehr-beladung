@@ -338,7 +338,17 @@ class FWB_Daten {
 	}
 
 	public static function kurzform( $post ) {
-		$daten = self::lade( $post->ID );
+		$daten     = self::lade( $post->ID );
+		$platziert = array();
+		foreach ( $daten['faecher'] as $f ) {
+			foreach ( $f['zustaende'] as $z ) {
+				foreach ( $z['hotspots'] as $h ) {
+					if ( 'geraet' === $h['typ'] ) {
+						$platziert[ $h['geraet'] ] = true;
+					}
+				}
+			}
+		}
 		return array(
 			'id'      => $post->ID,
 			'titel'   => get_the_title( $post ),
@@ -347,6 +357,7 @@ class FWB_Daten {
 			'bild'    => self::bild( $daten['info']['bild'] ),
 			'felder'  => array_slice( $daten['info']['felder'], 0, 3 ),
 			'geraete' => count( $daten['geraete'] ),
+			'lernbar' => count( $platziert ),
 			'faecher' => count( $daten['faecher'] ),
 		);
 	}

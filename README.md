@@ -6,12 +6,14 @@ WordPress-Plugin, mit dem Feuerwehrangehörige die Beladung ihrer Fahrzeuge lern
 
 **Lernseite** (Shortcode `[feuerwehr_beladung]`, nur für angemeldete Mitglieder)
 
-- Steckbrief je Fahrzeug: Foto, Pumpe, Löschwassertank und weitere frei benennbare Angaben
+- Aufbau in Ebenen, damit nie zu viel auf einmal zu sehen ist: Fahrzeugübersicht, Fahrzeug im Vollbild, Fach im Vollbild, Gerät als Karte über dem Foto
+- Die Zurück-Taste des Handys führt genau eine Ebene nach oben
+- Steckbrief je Fahrzeug hinter dem Knopf „Info": Foto, Pumpe, Löschwassertank und weitere frei benennbare Angaben
 - Außenansichten mit anklickbaren Gerätefächern
 - Geöffnetes Fach als Foto mit anklickbaren Geräten
 - Mehrere Bilder je Fach, zum Beispiel „Schwenkwand geschlossen" und „Schwenkwand geöffnet". Ein Pfeil-Schalter auf dem Foto wechselt das Bild.
 - Suche nach Geräten
-- Quiz „In welchem Fach liegt …?" mit Wiederholung der Fehler
+- Quiz „In welchem Fach liegt …?": Man tippt das Fach direkt auf dem Fahrzeugfoto an. Fehler werden wiederholt.
 - Lernfortschritt: Jedes Mitglied entscheidet selbst, ob er gespeichert wird. Es gibt einen Verlauf der letzten Runden und einen Knopf zum Zurücksetzen.
 
 **Backend**

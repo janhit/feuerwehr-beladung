@@ -3,7 +3,7 @@
  * Plugin Name:       Feuerwehr Beladung
  * Plugin URI:        https://github.com/janhit/feuerwehr-beladung
  * Description:       Fahrzeugbeladung interaktiv lernen: Gerätefächer auf Fotos anklicken, Geräte nachschlagen, Quiz mit Lernfortschritt. Einbindung mit dem Shortcode [feuerwehr_beladung].
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            janhit
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FWB_VERSION', '0.1.0' );
+define( 'FWB_VERSION', '0.2.0' );
 define( 'FWB_DATEI', __FILE__ );
 define( 'FWB_PFAD', plugin_dir_path( __FILE__ ) );
 define( 'FWB_URL', plugin_dir_url( __FILE__ ) );
