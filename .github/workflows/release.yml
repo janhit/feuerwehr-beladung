@@ -1,10 +1,12 @@
-# Baut bei jedem Versions-Tag (z. B. v0.2.0) das installierbare ZIP und veröffentlicht es als Release.
-# Das Plugin findet neue Releases selbst und bietet sie im WordPress-Backend zur Installation an.
+# Veröffentlicht automatisch ein Release, sobald auf main eine neue Versionsnummer
+# in feuerwehr-beladung.php steht. Das Plugin findet neue Releases selbst und bietet
+# sie im WordPress-Backend zur Installation an.
 name: Release
 
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,20 +16,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Version im Plugin-Kopf prüfen
+      - name: Version lesen
+        id: version
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
-          grep -Eq "^ \* Version: +${TAG}$" feuerwehr-beladung.php || { echo "Tag ${GITHUB_REF_NAME} passt nicht zur Version in feuerwehr-beladung.php"; exit 1; }
-          grep -q "define( 'FWB_VERSION', '${TAG}' );" feuerwehr-beladung.php || { echo "FWB_VERSION passt nicht zum Tag"; exit 1; }
+          VERSION="$(grep -E '^ \* Version:' feuerwehr-beladung.php | sed -E 's/.*Version: +//' | tr -d '[:space:]')"
+          grep -q "define( 'FWB_VERSION', '${VERSION}' );" feuerwehr-beladung.php || { echo "FWB_VERSION passt nicht zur Version im Plugin-Kopf (${VERSION})"; exit 1; }
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          if git rev-parse -q --verify "refs/tags/v${VERSION}" >/dev/null; then
+            echo "neu=nein" >> "$GITHUB_OUTPUT"
+            echo "Version ${VERSION} ist schon veröffentlicht."
+          else
+            echo "neu=ja" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: ZIP bauen
+        if: steps.version.outputs.neu == 'ja'
         run: |
           mkdir -p build/feuerwehr-beladung
           rsync -a --exclude build --exclude '.git*' --exclude tests ./ build/feuerwehr-beladung/
           cd build && zip -r ../feuerwehr-beladung.zip feuerwehr-beladung
 
-      - uses: softprops/action-gh-release@v2
+      - name: Release anlegen
+        if: steps.version.outputs.neu == 'ja'
+        uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Version ${{ steps.version.outputs.version }}
+          target_commitish: ${{ github.sha }}
           files: feuerwehr-beladung.zip
           generate_release_notes: true

@@ -55,8 +55,10 @@ Die Daten liegen in der WordPress-Datenbank (`usermeta`). Das Plugin zeigt sie i
 ## Neue Version veröffentlichen
 
 1. Versionsnummer in `feuerwehr-beladung.php` an zwei Stellen erhöhen: im Kopf (`Version:`) und in `FWB_VERSION`.
-2. Änderung committen und einen passenden Tag setzen, zum Beispiel `git tag v0.2.0 && git push --tags`.
-3. Die GitHub-Action baut das ZIP und legt das Release an. WordPress-Seiten mit dem Plugin zeigen das Update danach an.
+2. Änderung auf `main` hochladen.
+3. Die GitHub-Action erkennt die neue Versionsnummer, baut das ZIP und legt das Release an. WordPress-Seiten mit dem Plugin zeigen das Update danach an.
+
+Änderungen ohne neue Versionsnummer lösen kein Release aus.
 
 ## Aufbau
 
